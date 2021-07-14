@@ -91,11 +91,20 @@ def geiger(ride_df, sampling_rate):
             # reset
             pm10 = 0
 
+def breath(ride_df, sampling_rate):
+    for index, row in ride_df.iterrows():
+        client.send_message("/breath", [0, 249593, 5200])
+        time.sleep(5)
+        print("breathe slow")
+
 
 if __name__ ==  '__main__':
     p1 = Process(target=geiger, args=[ride_df, sampling_rate])
     p2 = Process(target=chord, args=[ride_df, sampling_rate])
+    p3 = Process(target=breath, args=[ride_df, sampling_rate])
     p1.start()
     p2.start()
+    p3.start()
     p1.join()
     p2.join()
+    p3.join()
