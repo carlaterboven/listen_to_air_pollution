@@ -9,7 +9,7 @@
 #X obj 363 104 soundfiler;
 #X floatatom 363 131 10 0 1e+006 0 - - -;
 #X obj 79 143 tabread4~ breath;
-#X msg 363 65 read -resize ../samples/breath/breath_slow.wav breath
+#X msg 363 65 read -resize ../samples/breath/breath_slow_2.wav breath
 ;
 #X connect 0 0 2 0;
 #X connect 2 0 3 0;

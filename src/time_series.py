@@ -92,19 +92,49 @@ def geiger(ride_df, sampling_rate):
             pm10 = 0
 
 def breath(ride_df, sampling_rate):
+    pm1 = 0
+
     for index, row in ride_df.iterrows():
-        client.send_message("/breath", [0, 249593, 5200])
-        time.sleep(5)
-        print("breathe slow")
+        pm1 += row['1.0']
+
+        if index % sampling_rate == 0 and index>0: # subsample our data and take average of last 10 seconds as value
+            pm1 = (pm1/sampling_rate)
+
+            print(pm1)
+
+            # most relaxed breath is 10 sec
+            # one slow breath is 7 sec
+            # fastest breath here is 1 sec
+            if pm1 < 15:
+                client.send_message("/breath", [0, 336001, 10000])
+                time.sleep(10)
+            elif pm1 < 21:
+                client.send_message("/breath", [0, 336001, 5000])
+                time.sleep(5)
+                client.send_message("/breath", [0, 336001, 5000])
+                time.sleep(5)
+            elif pm1 < 31:
+                client.send_message("/breath", [0, 336001, 2500])
+                time.sleep(2.5)
+                client.send_message("/breath", [0, 336001, 2500])
+                time.sleep(2.5)
+                client.send_message("/breath", [0, 336001, 2500])
+                time.sleep(2.5)
+                client.send_message("/breath", [0, 336001, 2500])
+                time.sleep(2.5)
+            else:
+                for i in range(1,10):
+                    client.send_message("/breath", [0, 336001, 1000])
+                    time.sleep(1)
 
 
 if __name__ ==  '__main__':
-    p1 = Process(target=geiger, args=[ride_df, sampling_rate])
-    p2 = Process(target=chord, args=[ride_df, sampling_rate])
+    #p1 = Process(target=geiger, args=[ride_df, sampling_rate])
+    #p2 = Process(target=chord, args=[ride_df, sampling_rate])
     p3 = Process(target=breath, args=[ride_df, sampling_rate])
-    p1.start()
-    p2.start()
+    #p1.start()
+    #p2.start()
     p3.start()
-    p1.join()
-    p2.join()
+    #p1.join()
+    #p2.join()
     p3.join()
