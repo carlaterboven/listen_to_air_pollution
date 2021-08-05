@@ -1,6 +1,6 @@
-#N canvas 556 123 1159 756 12;
+#N canvas 505 106 1159 756 12;
 #X obj 261 304 print;
-#X obj 36 68 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 0 1
+#X obj 36 68 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
 #X msg 36 99 \; pd dsp \$1;
 #X text 28 23 turn audio on and off;
@@ -48,7 +48,7 @@
 #X connect 19 0 20 0;
 #X connect 20 0 21 0;
 #X connect 21 0 0 0;
-#X connect 21 0 22 0;
 #X connect 21 0 23 0;
+#X connect 21 0 22 0;
 #X connect 22 0 15 0;
 #X connect 23 0 10 0;

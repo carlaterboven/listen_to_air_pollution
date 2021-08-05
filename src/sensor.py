@@ -103,11 +103,8 @@ if __name__ ==  '__main__':
             start_timer = time.time()
             while True:
                 data = pms5003.read()
-                print(data)
-
-                #TODO delete this (and sampling steps at top) when figuring out the sensor
+                # print(data)
                 sampling_steps += 1
-                print(sampling_steps)
 
                 # subtract smaller particle groups to get disjoint data
                 pm1 += data.pm_ug_per_m3(1.0)
@@ -116,10 +113,8 @@ if __name__ ==  '__main__':
                 joint_pm10 += data.pm_ug_per_m3(10.0)
                 pm10s.append(data.pm_ug_per_m3(10.0) - data.pm_ug_per_m3(2.5))
 
-                # TODO remove this if append works as expected
-                print(pm10s)
-
-                if time.time() - start_timer > 10 and p1.is_alive():
+                if time.time() - start_timer > 8:
+                # if time.time() - start_timer > 10 and p1.is_alive():
                     break
 
             if first_round:
