@@ -7,7 +7,7 @@ import os
 client = SimpleUDPClient("127.0.0.1", 6666)
 
 dirname = os.path.dirname(__file__)
-DATA_FILE = os.path.join(dirname, '../data/ride1.csv')
+DATA_FILE = os.path.join(dirname, '../data/ride6.csv')
 ride_df = pd.read_csv(DATA_FILE)
 sampling_rate = 10
 
