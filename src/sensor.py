@@ -117,6 +117,10 @@ if __name__ ==  '__main__':
                 # if time.time() - start_timer > 10 and p1.is_alive():
                     break
 
+                if not first_round:
+                    if not p1.is_alive() or not p2.is_alive():
+                        break
+
             if first_round:
                 first_round = False
             else:
