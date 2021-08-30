@@ -4,7 +4,7 @@ Most samples are self recorded.
 Some samples are snippets of public domain sound downloaded from freesond.org
 
 
-The following files are snippets of sound from freesound.org published with a Creative Commons Attribution License:
+The following files are snippets of sound files from freesound.org published with a Creative Commons Attribution License:
 
 * zischen_2.wav taken from "Bus, Air Brake, A" (InspectorJ) (Retrieved from https://freesound.org/s/361546/ on 2021-08-04)
 * can_bubble_01.wav, can_bubble_02.wav, can_bubble_03.wav, can_bubble_04.wav taken from "Bubbles" (iainmccurdy) (Retrieved from https://freesound.org/s/518539/ on 2021-08-04)
