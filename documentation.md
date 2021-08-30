@@ -91,7 +91,28 @@ In the following sections, I take a more detailed look into each step I take to 
 <!-- 3) Methods used: Beginning 😊. It will be interesting to see what sonification methods you decide on in the end. I also recommend adding one slide in your presentation where you spell out a study design how your tool could be tested practically. E.g., you could test different sonification approaches and ask people via a questionnaire how they experienced each sonification (pleasant, informative, annoying…). In that case, it would be good to have a list of questions that would want to ask. Since you are only one person, enrolled in only one class, it is not necessary that you add empirical tests of your approach in the final submission (while empirical tests generally make up an important phase in any creative process). In terms of slides/project documentation, a study design belongs to the method section, but since in this case it will more likely be a method proposition for future works, you could also include it in the end of the slide presentation. (Because study design is intricate, I recommend sharing the slide/design prior to the final submission, if you like.)  -->
 
 #### Hardware setup
-PLANTOWER PMS5003 (http://www.plantower.com/en/content/?108.html)
+To build a transportable device that enables users to listen to air pollution, multiple components are connected. I use a PLANTOWER PMS5003 sensor (http://www.plantower.com/en/content/?108.html) to gather the data, a Raspberry Pi 2 to process the data, and headphones to listen to the sonification. Moreover, for a transportable design of the device, I use a rechargeable battery pack to power the Raspberry Pi, and a transparent plastic box for protection of the electronic devices.
+
+The rechargeable battery pack as well as the headphones are easily connected to the Raspberry Pi's corresponding plugs. To wire the sensor the Raspberry Pi's GPIO pins are used. According to the [sensor's documentation](https://www.distrelec.de/Web/Downloads/_t/ds/3686_eng_tds.pdf) three pins are required to read the data on sensor side: PIN1 (VCC) and PIN2 (GND) for 5V power and ground, and PIN5 (TX) is the serial port sending pin. These three pins are connected to the corresponding pins at the Raspberry Pi. Sensor PIN1 is wired to the Raspberry Pi's 5V pin, sensor PIN2 to the Raspberry Pi's ground and sensor PIN5 is connected to the Raspberry Pi's GPIO 15 (UART RX). A picture of the complete wiring is shown below. To finally read the data on software side I use the python package *pms5003-python* available on [GitHub](https://github.com/pimoroni/pms5003-python).
+
+![Raspberry Pi Wiring]()
+
+Apart from pure transportation and protection purposes I chose the transparent plastic box also for illustration reasons.
+create picture
+* box is completely transparent, as is the air that is sonified
+* air pollution is human made, handwritten title, not completely polished wiring
+
+Looks handmade
+Decided to leave it like that on purpose
+Not pollished as a lot of results in official spots are (Quelle?)
+Human Made design
+Transparency without hiding unangenehme oder unschöne Details
+
+use in life
+* size around 18cm x 16cm x 10cm
+
+![Final Prototype Annotated]()
+![Final Prototype Top View]()
 
 #### Data Preparation
 Last semester I worked on gathered PM data from Berlin that was kindly shared with me by *Kaffe Matthews*. The data consists of seven data sets measured in slightly different weather conditions. The following figure shows raincloud violin plots with the distribution of the PM values for all seven data sets.
@@ -124,9 +145,9 @@ These messages trigger PD to play prerecorded samples at a certain speed. The se
 
 #### Idea 2: Breathing and Air Bubbles
 
-#### Idea 3: Bees
+#### Idea 3: Traffic Noise
 
-#### Idea 4: Traffic noise
+#### Idea 4: Bees and Birds
 
 #### Idea 5: Music and Distortion
 
