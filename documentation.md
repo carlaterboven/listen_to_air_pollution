@@ -74,7 +74,7 @@ Next to these scientific papers, I also found exciting sound examples online. Fo
 
 The auditory display by Kasper Fangel Skov [[17]](#sonification-of-air-pollution-data-1) is concerned about climate and human health as well but focuses not on ozone but on dimensions like temperature, light, humidity, and noise. Interestingly this auditory display of urban environmental data of different cities also uses voice to classify the used data in categories like "high" or "medium".
 
-Also interesting is a project by Jon Bellona and John Park [[13]](#sonification-of-air-pollution-data-1) [[16]](#sonification-of-air-pollution-data-1). They are not directly sonifying air pollution data but carbon emissions of twitter feeds. This indirect concern about air pollution is communicated with a physical visualization. The auditive, as well as visual experience, aims to connect virtuality and reality. Based on the estimation that one twitter tweet produces 0.02 grams of CO2, gas bubbles inside a water tank are released based on personal twitter feed data. The usage of gas bubbles in water creates a strong picture, that I find comparable to the microphone recording the wood in Zimoun's *Woodworms* sound sculpture[[xxx]](#inspiration-and-vision). Moreover, the physical visualization is supported by sound, making the feeling transported by the installation even more powerful.
+Also interesting is a project by Jon Bellona and John Park [[13]](#sonification-of-air-pollution-data-1) [[16]](#sonification-of-air-pollution-data-1). They are not directly sonifying air pollution data but carbon emissions of twitter feeds. This indirect concern about air pollution is communicated with a physical visualization. The auditive, as well as visual experience, aims to connect virtuality and reality. Based on the estimation that one twitter tweet produces 0.02 grams of CO2, gas bubbles inside a water tank are released based on personal twitter feed data. The usage of gas bubbles in water creates a strong picture, that I find comparable to the microphone recording the wood in Zimoun's *Woodworms* sound sculpture [[xxx]](#inspiration-and-vision). Moreover, the physical visualization is supported by sound, making the feeling transported by the installation even more powerful.
 
 Apart from the sonification projects described above, I got inspiration by the *Sonic Kayak* [[15]](#sonification-of-air-pollution-data-1) and the *Sonic Bike* [[19]](#sonic-bikes) [[20]](#sonic-bikes) [[21]](#sonic-bikes) projects. Both projects were introduced to me by *Kaffe Matthews* who works on these topics for some years.  
 The *Sonic Kayak* project generates live sound on the kayak, using sensors in the water as well as sensors for air particulate pollution, GPS, and time.  
@@ -95,21 +95,12 @@ To build a transportable device that enables users to listen to air pollution, m
 
 The rechargeable battery pack as well as the headphones are easily connected to the Raspberry Pi's corresponding plugs. To wire the sensor the Raspberry Pi's GPIO pins are used. According to the [sensor's documentation](https://www.distrelec.de/Web/Downloads/_t/ds/3686_eng_tds.pdf) three pins are required to read the data on sensor side: PIN1 (VCC) and PIN2 (GND) for 5V power and ground, and PIN5 (TX) is the serial port sending pin. These three pins are connected to the corresponding pins at the Raspberry Pi. Sensor PIN1 is wired to the Raspberry Pi's 5V pin, sensor PIN2 to the Raspberry Pi's ground and sensor PIN5 is connected to the Raspberry Pi's GPIO 15 (UART RX). A picture of the complete wiring is shown below. To finally read the data on software side I use the python package *pms5003-python* available on [GitHub](https://github.com/pimoroni/pms5003-python).
 
-![Raspberry Pi Wiring](https://github.com/carlaterboven/listen_to_air_pollution/blob/documentation-images/images/raspberry_wiring.JPG)
+![Raspberry Pi Wiring](https://github.com/carlaterboven/listen_to_air_pollution/blob/documentation-images/images/raspberry_wiring.png)
 
-Apart from pure transportation and protection purposes I chose the transparent plastic box also for illustration reasons.
-create picture
-* box is completely transparent, as is the air that is sonified
-* air pollution is human made, handwritten title, not completely polished wiring
-
-Looks handmade
-Decided to leave it like that on purpose
-Not pollished as a lot of results in official spots are (Quelle?)
-Human Made design
-Transparency without hiding unangenehme oder unschöne Details
-
-use in life
-* size around 18cm x 16cm x 10cm
+Apart from pure transportation and protection purposes I chose the transparent plastic box also for illustration reasons. My my self-imposed goal was to create a picture like Zimoun with his sound sculpture *Woodworms* [[xxx]](#inspiration-and-vision). Zimoun was able to intuitively communicate that woodworms are recorded by placing a microphone next to a piece of wood. The design of my final prototype is not quite as straight forward but still subject to some design decisions.  
+First of all the box is completely transparent, as is the air that is sonified. Moreover, the transparency is not hiding any of my used components or the not completely polished wiring. No detail, even the most unattractive or unpleasant, is hidden. This should also strengthen the basic trust in my application. Official measuring stations make adjustments in the environment (e.g. in traffic flow) to improve the measurement data [[xxxx]](#air-pollution). This is not possible with my transparent application.  
+The sensor is located at the very top, centrally on the final prototype. Its significance is further emphasized by the label surrounding it on the lid of the object. *Listen To Air Pollution* is not only the project title. It reminds the users that the sounds they hear have meaning. In a higher context, the handwritten message, in combination with the obviously handmade assembly of the other parts, points out that the audible air pollution is also humen-made.  
+The device is lightweight and has a size around 18cm x 16cm x 10cm. In daily life, e.g. during walks, these dimensions allow the device to be held in the hand. If it is placed, for example, in a bag the sensor on top should remain exposed to the air.
 
 ![Final Prototype Annotated](https://github.com/carlaterboven/listen_to_air_pollution/blob/documentation-images/images/final_prototype_annotated.png)
 
@@ -190,6 +181,7 @@ Moreover, I thank Malte Barth for his support last semester when we did our firs
 [[1]](https://www.ted.com/talks/anirudh_sharma_ink_made_of_air_pollution) Anirudh Sharma, TED@BCG Toronto (2018). *Ink made of air pollution.* Retrieved from https://www.ted.com/talks/anirudh_sharma_ink_made_of_air_pollution on 2021-03-27  
 [[2]](https://www.umweltbundesamt.de/themen/luft/luftschadstoffe-im-ueberblick/feinstaub) Umweltbundesamt (2021). *Feinstaub.* Retrieved from https://www.umweltbundesamt.de/themen/luft/luftschadstoffe-im-ueberblick/feinstaub on 2021-03-27  
 [[3]](https://aqicn.org/here/de/) World Air Quality Index Team (started in 2008). *The World Air Quality Project: Echtzeit-Luftqualitätsindex (LQI).* Retrieved from https://https://aqicn.org/here/de/ on 2021-03-27  
+[[xxxx]](https://www.umweltzentrum-braunschweig.de/fileadmin/_uwz-pdfs/2017-03/Kein_Grund_zum_Aufatmen.pdf) umweltzeitung (2017). *Braunschweigs Luftzustand - Kein Grund zum Aufatmen* Retrieved from https://www.umweltzentrum-braunschweig.de/fileadmin/_uwz-pdfs/2017-03/Kein_Grund_zum_Aufatmen.pdf on 2021-08-30
 
 #### Inspiration and Vision
 [[xxx]](https://www.zimoun.net/sculptures/) Zimoun (2009). *Woodworms.* Retrieved from https://www.zimoun.net/sculptures/ and https://vimeo.com/14424815 on 2021-08-23
