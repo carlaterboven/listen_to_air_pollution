@@ -1,4 +1,6 @@
-Most samples are self recorded.
+# Licenses for samples
+
+Most samples are self recorded. These are public domain sounds.
 
 
 Some samples are snippets of public domain sound downloaded from freesond.org
