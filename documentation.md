@@ -95,7 +95,7 @@ To build a transportable device that enables users to listen to air pollution, m
 
 The rechargeable battery pack as well as the headphones are easily connected to the Raspberry Pi's corresponding plugs. To wire the sensor the Raspberry Pi's GPIO pins are used. According to the [sensor's documentation](https://www.distrelec.de/Web/Downloads/_t/ds/3686_eng_tds.pdf) three pins are required to read the data on sensor side: PIN1 (VCC) and PIN2 (GND) for 5V power and ground, and PIN5 (TX) is the serial port sending pin. These three pins are connected to the corresponding pins at the Raspberry Pi. Sensor PIN1 is wired to the Raspberry Pi's 5V pin, sensor PIN2 to the Raspberry Pi's ground and sensor PIN5 is connected to the Raspberry Pi's GPIO 15 (UART RX). A picture of the complete wiring is shown below. To finally read the data on software side I use the python package *pms5003-python* available on [GitHub](https://github.com/pimoroni/pms5003-python).
 
-![Raspberry Pi Wiring]()
+![Raspberry Pi Wiring](https://github.com/carlaterboven/listen_to_air_pollution/blob/documentation-images/images/raspberry_wiring.JPG)
 
 Apart from pure transportation and protection purposes I chose the transparent plastic box also for illustration reasons.
 create picture
@@ -111,20 +111,21 @@ Transparency without hiding unangenehme oder unschöne Details
 use in life
 * size around 18cm x 16cm x 10cm
 
-![Final Prototype Annotated]()
-![Final Prototype Top View]()
+![Final Prototype Annotated](https://github.com/carlaterboven/listen_to_air_pollution/blob/documentation-images/images/final_prototype_annotated.png)
+
+![Final Prototype Top View](https://github.com/carlaterboven/listen_to_air_pollution/blob/documentation-images/images/final_prototype_top.JPG)
 
 #### Data Preparation
 Last semester I worked on gathered PM data from Berlin that was kindly shared with me by *Kaffe Matthews*. The data consists of seven data sets measured in slightly different weather conditions. The following figure shows raincloud violin plots with the distribution of the PM values for all seven data sets.
 
-![PM Raincloud Plots](https://raw.githubusercontent.com/malte-b/musical_env_bike/readme_images/readme_images/pm_raincloud.png)
+![PM Raincloud Plots](https://github.com/carlaterboven/listen_to_air_pollution/blob/documentation-images/images/pm_raincloud.png)
 
 The plot shows that the distribution of PM2.5 and PM10 nearly seems to be the same. This can be explained by the definition of PM ("Particulate Matter").
 PM1 describes the amount of µg/m³ of particles smaller than 1 µm. PM2.5 includes the amount of µg/m³ of particles	smaller than 2.5 µm. And PM10 contains the amount of µg/m³ of particles	smaller than 10 µm. All particles that are smaller than 1 µm or 2.5 µm are smaller than 10 µm as well. If there are only a few particles with a size between 2.5 and 10 µm, the PM10 values equal the PM2.5 values most of the time.
 
 For sonification, I want to use the PM data to manipulate different aspects of the auditory representation. If PM2.5 and PM10 values behave the same most of the time, the sound representation hardly becomes exciting and meaningful to the listener. This is why I decided to subtract the smaller PM values of the bigger ones for each live data point I read with the sensor. I call the generated values "disjoint PM". For the example data from last semester, the following plot proves that the distribution of the PM values becomes more distinct for the "disjoint PM".
 
-![Disjoint PM Raincloud Plots](https://raw.githubusercontent.com/malte-b/musical_env_bike/readme_images/readme_images/disjoint_pm_raincloud.png)
+![Disjoint PM Raincloud Plots](https://github.com/carlaterboven/listen_to_air_pollution/blob/documentation-images/images/disjoint_pm_raincloud.png)
 
 Still, I have to keep in mind that I have to use the original PM data when comparing it to legal thresholds. There are statutory thresholds by the EU and more strict recommendations by the WHO to ensure human health. All average limits per year are presented in the following table (thresholds according to [[2]](#air-pollution)):
 
