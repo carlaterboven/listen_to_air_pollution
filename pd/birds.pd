@@ -8,13 +8,13 @@
 #X obj 363 27 loadbang;
 #X obj 363 104 soundfiler;
 #X floatatom 363 131 10 0 1e+006 0 - - -;
-#X msg 363 65 read -resize ../samples/nature/birds.wav honk;
 #X obj 79 143 tabread4~ birds;
+#X msg 363 65 read -resize ../samples/nature/birds.wav birds;
 #X connect 0 0 2 0;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
-#X connect 4 0 10 0;
-#X connect 6 0 9 0;
+#X connect 4 0 9 0;
+#X connect 6 0 10 0;
 #X connect 7 0 8 0;
-#X connect 9 0 7 0;
-#X connect 10 0 1 0;
+#X connect 9 0 1 0;
+#X connect 10 0 7 0;

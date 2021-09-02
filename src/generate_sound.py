@@ -128,21 +128,53 @@ def geiger_counter(pm10s, joint_pm10):
                     time.sleep(sampling_time/num_clicks)
 
 def music():
-    pass
+    client.send_message("/music", [0, 9176263, 208079])
 
 
-def noise():
-    pass
+def noise(joint_pm2_5, joint_pm10):
+    print("pm2.5 ", joint_pm2_5)
+    print("pm10 ", joint_pm10)
+    # pollution > EU threshold -> always noise
+    # pollution between WHO and EU thersholds -> sometimes noise depending on level of pollution
+    # min pollution -> no noise
+    if joint_pm2_5 > pm2_5_EU_threshold and joint_pm10 > pm10_EU_threshold:
+        client.send_message("/noise", [0, 441001, 10000])
+        time.sleep(9.5)
+    elif joint_pm2_5 > pm2_5_WHO_threshold and joint_pm10 > pm10_WHO_threshold:
+        for i in range(2):
+            client.send_message("/noise", [0, 35280, 800])
+            time.sleep(1)
+            client.send_message("/noise", [0, 35280, 800])
+            time.sleep(1)
+            client.send_message("/noise", [0, 39690, 900])
+            time.sleep(1)
+            client.send_message("/noise", [0, 35280, 800])
+            time.sleep(1)
+            client.send_message("/noise", [0, 39690, 900])
+            time.sleep(1)
+    elif joint_pm2_5 > pm2_5_WHO_threshold or joint_pm10 > pm10_WHO_threshold:
+        for i in range(2):
+            client.send_message("/noise", [0, 44100, 1000])
+            time.sleep(2.5)
+            client.send_message("/noise", [0, 22050, 500])
+            time.sleep(2.5)
+    else:
+        time.sleep(10)
 
 
-def bees():
-    pass
+def bees(joint_pm2_5):
+    if joint_pm2_5 <= pm2_5_EU_threshold:
+            client.send_message("/bees", [0, 441004, 10000])
 
 
-def birds():
-    pass
+def birds(joint_pm10):
+    if joint_pm10 <= pm10_EU_threshold:
+            client.send_message("/birds", [0, 220505, 10000])
+            time.sleep(5)
+            client.send_message("/birds", [0, 220505, 10000])
 
 
-def bird_alarm():
-    pass
-    
+def bird_alarm(joint_pm2_5, joint_pm10):
+    if joint_pm2_5 > pm2_5_EU_threshold or joint_pm10 > pm10_EU_threshold:
+        client.send_message("/bird_alarm", [0, 84364, 1760])
+    time.sleep(9.5)

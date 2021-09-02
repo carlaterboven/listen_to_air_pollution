@@ -9,7 +9,8 @@
 #X obj 363 104 soundfiler;
 #X floatatom 363 131 10 0 1e+006 0 - - -;
 #X obj 79 143 tabread4~ bird_alarm;
-#X msg 363 65 read -resize ../samples/nature/crows_alarm.wav honk;
+#X msg 363 65 read -resize ../samples/nature/crows_alarm.wav bird_alarm
+;
 #X connect 0 0 2 0;
 #X connect 2 0 3 0;
 #X connect 3 0 4 0;
