@@ -12,7 +12,7 @@ The following files are snippets of sound files from freesound.org published wit
 * can_bubble_01.wav, can_bubble_02.wav, can_bubble_03.wav, can_bubble_04.wav taken from "Bubbles" (iainmccurdy) (Retrieved from https://freesound.org/s/518539/ on 2021-08-04)
 * straw_1.wav taken from "bubbles with straw" (pauliperez1999) (Retrieved from https://freesound.org/s/428810/ on 2021-08-04)
 * asthma_inhaler.wav taken from "8. Asthma inhaler" (btherad2000) (Retrieved from https://freesound.org/s/328033/ on 2021-08-04)
-* wind_leaves_1 taken from "Strong Wind through leaves" (justkiddink) (Retrieved from https://freesound.org/s/81188/ on 2021-08-04)
+* wind_leaves_1, wind_leaves_2 taken from "Strong Wind through leaves" (justkiddink) (Retrieved from https://freesound.org/s/81188/ on 2021-08-04)
 * wind.wav taken from "Wind, Synthesized, A" (InspectorJ) (Retrieved from https://freesound.org/s/376415/ on 2021-08-04)
 * wind_chimes_1.wav, wind_chimes_2.wav taken from "Wind Chimes, A" (InspectorJ) (Retrieved from https://freesound.org/s/353194/ on 2021-08-04)
 * motorbike_starting.wav, motorbike_driving.wav taken from "bike3" (Erdie) (Retrieved from https://freesound.org/s/22615/ on 2021-08-04)

@@ -4,10 +4,7 @@ import time
 from pythonosc.udp_client import SimpleUDPClient
 from multiprocessing import Process
 import os
-from helper.geiger_counter import geiger_counter
-from helper.breath import breath
-
-client = SimpleUDPClient("127.0.0.1", 6666)
+from generate_sound import *
 
 def start_sound():
     # TODO add "start sonification signal"
@@ -37,6 +34,7 @@ if __name__ ==  '__main__':
                 pm1 = (pm1/sampling_steps)
                 pm2_5 = (pm2_5/sampling_steps)
                 pm10 = (pm10/sampling_steps)
+                joint_pm2_5 = (joint_pm2_5/sampling_steps)
                 joint_pm10 = (joint_pm10/sampling_steps)
 
                 p1 = Process(target=breath, args=[pm1, client])
@@ -48,6 +46,7 @@ if __name__ ==  '__main__':
             pm1 = 0
             pm2_5 = 0
             pm10 = 0
+            joint_pm2_5 = 0
             joint_pm10 = 0
             pm10s = []
             sampling_steps = 0
@@ -62,6 +61,7 @@ if __name__ ==  '__main__':
                 pm1 += data.pm_ug_per_m3(1.0)
                 pm2_5 += data.pm_ug_per_m3(2.5) - data.pm_ug_per_m3(1.0)
                 pm10 += data.pm_ug_per_m3(10.0) - data.pm_ug_per_m3(2.5)
+                joint_pm2_5 += data.pm_ug_per_m3(2.5)
                 joint_pm10 += data.pm_ug_per_m3(10.0)
                 pm10s.append(data.pm_ug_per_m3(10.0) - data.pm_ug_per_m3(2.5))
 
