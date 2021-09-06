@@ -133,27 +133,74 @@ These messages trigger PD to play prerecorded samples at a certain speed. The se
 // TODO nach we und our suchen und durch I and my ersetzen
 // TODO quellen nummern überarbeiten
 
-#### Idea 1: Breathing and Geiger Counter
-
-#### Idea 2: Breathing and Air Bubbles
-
-#### Idea 3: Traffic Noise
-
-#### Idea 4: Bees and Birds
-
-#### Idea 5: Music and Distortion
-
-#### Study Design To Compare
+// TODO software part python und samples?
 
 ### 6.) Work results
-<!-- 4) Work results: creative outcome, e.g. demo, installation, code: Great that you had a well-functioning prototype and were able to share this in class! -->
+This semester I aimed to realize sonification with samples. Based on different sound snippets I developed 5 different concepts to sonify the quality of the air. The advantages and disadvantages in terms of pleasance and information content of the concepts still need to be tested with a uniform study. In the following, all concepts will be briefly explained and finally it will be reported how a test series with users could look like, which would allow the comparison of the concepts.
 
 #### Where to find the code and demo/prototypical application
 Code: https://github.com/carlaterboven/listen_to_air_pollution  
 Demos: https://github.com/carlaterboven/listen_to_air_pollution/tree/main/demos
+The demos are based on the collected test data for better comparability. Most of the concepts were tested for very high particulate matter ("ride 1"), medium particulate matter ("ride 6") and low particulate matter ("ride 4").
+
+#### Concept 1: Breathing and Geiger Counter
+The first concept was already presented in class in July. It uses breathing sound of different speed to sonify PM 1 values and the sound of a Geiger counter to sonify disjoint PM 10 values if the PM 10 level is higher than the WHO threshold.
+
+**Implementation Details:**
+According to the clinical and health psychologist Dr. Schmid a relaxed breath takes around ten seconds [[vvvvvv]](#air-pollution). The faster the rate of breathing, the more stressful and tense it is perceived. I decided to use different breathing levels with a breathing time of 10, 5, 2.5, and 1 second. The different levels are directly influenced by the average of PM 1 values over a period of 10 seconds. The gradations are based on the quartiles of the collected test data. For example, the quartile [0; 15] results in a respiratory rate of 10 seconds (sound played once), the quartile (15; 21] results in a rate of 5 seconds (sound played twice), and so forth.  
+The Geiger counter only clicks when the average PM 10 level of 10 seconds is higher than the WHO threshold. To avoid the clicking of being too monotonous I sonify the measured values of every second with one Geiger click for every 2µg/m³ disjoint PM10 pollution.
+
+**First Impressions and Feedback:**
+Many of the test subjects reported that they automatically adjusted their breathing speed to the speed of the recorded breathing and were thus able to intuitively follow the relaxation or tension of the data. Regarding the Geiger counter, some subjects had problems when interpreting. They had not been able to interpret well whether a fast or slower click was desired.  
+All users were able to listen to the sonification as a whole but also were able to pay closer attention to one of the sounds. Therefore, the basic idea of using sound samples can be pursued further.
+However, all test persons have so far only listened to the concept out of curiosity and a more extensive survey would certainly lead to even more valuable feedback.
+
+#### Concept 2: Breathing, Air Bubbles, and Asthma Inhaler
+As an iteration of the first concept I combined the well perceived breathing sound with two new samples. This time I focused more on the theme of breathing and air to get a better user understanding than I found with the Geiger counter. Moreover, not only PM 1 and PM 10 values are used for this concept but also the measured PM 2.5 data.  
+
+**Implementation Details:**
+The sonification of the PM 1 data with the breathing sounds corresponds exactly to the implementation from concept 1. The implementation logic of the PM 10 sonification also remains the same except for the use of the sound of an asthma inhaler instead of the click of the Geiger counter.  
+To sonify the PM 2.5 data the sound of air bubbles is used. The sound sample is produced with a straw in a glass of water and some filter effects. The higher the fine dust values, the faster, higher and more often the "popping" of the air bubbles sounds. The different gradations of sounds are again based on the quartiles of the collected test data.
+
+**First Impressions and Feedback:**
+Test persons were also able to interpret the meaning of the data based on sonification for three different samples. In the long run, the implementation of very similar measured values over a longer period of time appears quite monotonous due to the uniform popping of the air bubbles.
+
+#### Concept 3: Wind
+In this concept, the focus is not only on air pollution and its composition with different PM sizes. Instead, this time I am concerned with the air as a whole, with wind as the sound that many respondents associate with air. Based on the EU and WHO thresholds, I would like the user to understand how good the air quality is, or whether certain limit values have already been exceeded. For this I use three sound samples: wind chimes, leaves rustling and howling wind.
+
+**Implementation Details:**
+Since I want to measure air quality based on WHO and EU limits, I use only the original, joint values of PM 2.5 and PM 10 for this concept. If both particulate matter sizes are below the EU limit, the soft harmonic sound of a wind chime is heard. As soon as one of the sizes (PM 2.5 or PM 10) is above the threshold values of the EU, the howling wind resounds. This means that either the wind chime or the howling wind is audible.  
+To achieve a more interesting sound scheme the sound of rustling leaves is added whenever one of the PM levels is above the stricter WHO thresholds but at the same time one of the PM levels is below the EU threshold.
+
+**First Impressions and Feedback:**
+The main problem in understanding the data in this concept was the "melody" that is already in one of the samples used. The transitions between louder and softer sound of the rustling leaves can be misinterpreted as a development in the data. For later iterations, therefore, attention should be paid to a more uniform soundscape of the short samples.
+
+#### Concept 4: Bees and Birds
+After talking to a person living in Stuttgart, one of the most polluted cities in Germany, I decided to prototype one concept where good air quality is sonified instead of bad. My interviewee from Stuttgart directly mentioned bees as a sound she always notices as something special whenever she is in an area with more nature. She misses this sound in the traffic of Stuttgart. She connects the abscence of bees with air pollution. Next to bees I also use the sound of chirping birds to mimic the sound of clean nature whenever the PM values are below EU thresholds.  
+In contrast to concept 3, this time I don't want to abstract completely from the different PM levels. The aim is to convey an audible difference between good and poor air quality, while at the same time keeping it clear to what extent PM 2.5 or PM 10 values influence the quality. Also, in this concept, I focus mainly on highlighting good air quality and work with silence (meaning absence of bee and bird sounds) at high air pollution levels. This is in contrast to the other concepts, where I usually made the sound more intense, faster or louder when the air pollution is higher.
+
+**Implementation Details:**
+If the average value of the original, joint PM 10 values (considered over 10 seconds) is below the EU limit value, then I sound this with the 10 second sound of birds chirping. When the limit is exceeded, the short cawing of a crow sounds as an alarm. The rest of the 10 seconds it remains quiet. For PM 2.5 I use the same concept, but with bee buzzing as a sound source. When the limit is exceeded, the crow's alarm sounds for 1.7 seconds followed by 8.3 seconds of silence.
+
+**First Impressions and Feedback:**
+The separation into bees and birds allows the listener to distinguish particulate matter sizes easily and reliably. So far, however, all listeners have been informed beforehand about the meaning of the sounds and the silence. A user study could find out whether such an interpretation is also intuitively possible.  
+In particular, I would be interested in the extent to which silence can nevertheless bring users closer to the alarming quality of the air. This is also related to the feedback of one person who perceived the very intense, buzzing of bees as stressful and alarming. Despite the good air quality, she found it difficult to relax when the bees were buzzing, which could also be due to the sample used. For later tests, it would be better to use a sample with the buzzing of fewer bees instead of the intense buzzing of the swarm in the sample used. Fortunately, the current implementation allows to exchange the used samples quite easily and quickly.
+
+#### Concept 5: Music and White Noise
+Since many people walk with headphones and music on, my latest concept tests how to alert these people to exceptionally high levels of air pollution during their walks. For this I add different amounts of white noise to the music.
+
+**Implementation Details:**
+Any song can be selected as the music that the user listens to during his walk. In my demo it is Vivaldi's *Four Seasons*. If the average values of the original, joint PM 10 and 2.5 values (considered over 10 seconds) are above the EU thresholds, a constant white noise is added to the music for 10 seconds. For values between the WHO and the EU limits, I add the white noise in short, pulsating "disturbances" with irregular pauses. If both particulate matter sizes (PM 2.5 and PM 10) are below the the WHO threshold I do not add noise but only play the music.
+
+**First Impressions and Feedback:**
+Originally, I hoped that adding white noise to the music would have an effect similar to disturbed radio or television signals. Unfortunately, however, I found that a much more finely tuned amount of noise was needed to achieve this effect rather than a regular, unexciting annoyance. Moreover, the concept did not work for very high polluted areas because there I experienced a constant noise in the background next to the music which was alarming and annoying but not as artistic and informative as I wished it to be.
+Compared to the other concepts, I find this approach artistically less exciting and strongly dependent on the music played by the user.
+
+#### Study Design To Compare
+
+
 
 ### 7.) Conclusion, discussion, limitations and avenues for future work
-<!-- 5) Conclusion and discussion, including limitations of your work and potential avenues for future work: Please work this out in detail. There should be a headline “conclusions” re-stating your overarching aims/vision and reviewing how far you have come with this; there should be a headline “limitations” followed by a couple of bullet points with the limitations you currently acknowledge, suggesting next likely steps to follow. Compare your slide 11 to slide 4. Your next step is to use more than one channel. Why? Which of your three goals on slide 11 is not fully met as of yet? Why would creating more channels be a helpful means to better achieving this particular goal? -->
 ### Conclusion
 // TODO überarbeiten
 Our goal of this project was to make people more aware of the air pollution in their daily life by sonifying real-time air pollution data on a bike. Simultaneously we used musical foundations for generating sounds to make differences of pollution more noticeable for a layman by sounding less and less pleasant the higher the pollution gets.
@@ -178,10 +225,11 @@ Moreover, I thank Malte Barth for his support last semester when we did our firs
 
 ### Reference List
 #### Air Pollution
-[[1]](https://www.ted.com/talks/anirudh_sharma_ink_made_of_air_pollution) Anirudh Sharma, TED@BCG Toronto (2018). *Ink made of air pollution.* Retrieved from https://www.ted.com/talks/anirudh_sharma_ink_made_of_air_pollution on 2021-03-27  
+[[1]](https://www.ted.com/talks/anirudh_sharma_ink_made_of_air_pollution) Sharma, A., TED@BCG Toronto (2018). *Ink made of air pollution.* Retrieved from https://www.ted.com/talks/anirudh_sharma_ink_made_of_air_pollution on 2021-03-27  
 [[2]](https://www.umweltbundesamt.de/themen/luft/luftschadstoffe-im-ueberblick/feinstaub) Umweltbundesamt (2021). *Feinstaub.* Retrieved from https://www.umweltbundesamt.de/themen/luft/luftschadstoffe-im-ueberblick/feinstaub on 2021-03-27  
 [[3]](https://aqicn.org/here/de/) World Air Quality Index Team (started in 2008). *The World Air Quality Project: Echtzeit-Luftqualitätsindex (LQI).* Retrieved from https://https://aqicn.org/here/de/ on 2021-03-27  
-[[xxxx]](https://www.umweltzentrum-braunschweig.de/fileadmin/_uwz-pdfs/2017-03/Kein_Grund_zum_Aufatmen.pdf) umweltzeitung (2017). *Braunschweigs Luftzustand - Kein Grund zum Aufatmen* Retrieved from https://www.umweltzentrum-braunschweig.de/fileadmin/_uwz-pdfs/2017-03/Kein_Grund_zum_Aufatmen.pdf on 2021-08-30
+[[xxxx]](https://www.umweltzentrum-braunschweig.de/fileadmin/_uwz-pdfs/2017-03/Kein_Grund_zum_Aufatmen.pdf) umweltzeitung (2017). *Braunschweigs Luftzustand - Kein Grund zum Aufatmen.* Retrieved from https://www.umweltzentrum-braunschweig.de/fileadmin/_uwz-pdfs/2017-03/Kein_Grund_zum_Aufatmen.pdf on 2021-08-30
+[[vvvvvvv]](https://www.gesundheitskasse.at/cdscontent/?contentid=10007.826380) Schmid, N. (2020). *Bauchatemtraining.* Retrieved from https://www.gesundheitskasse.at/cdscontent/?contentid=10007.826380 on 2021-09-06
 
 #### Inspiration and Vision
 [[xxx]](https://www.zimoun.net/sculptures/) Zimoun (2009). *Woodworms.* Retrieved from https://www.zimoun.net/sculptures/ and https://vimeo.com/14424815 on 2021-08-23
