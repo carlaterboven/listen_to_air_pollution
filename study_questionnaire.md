@@ -2,9 +2,12 @@
 
 Thank you for taking part in this user study.  
 All data will be used completely anonymously and exclusively for research purposes on Carla Terboven's project "Listen To Air Pollution". The project was developed in the context of the "Sonic Thinking Seminar - Methods of Working with Sound" at the Hasso Plattner Institute.  
-// TODO
-* was ist sonification
-* kein falsch weil künstlerisch
+The project deals with the sonification of air pollution data. This means that data or data relationships are converted into acoustic signals. The listener should be facilitated in interpreting the data through the acoustic communication.
+
+You are given a device that uses a sensor to measure particulate matter in the air and then communicates the data to you through the headphones. You will be asked to walk with the sensor and headphones in your ears for about 5 minutes (or longer). After each walk you will be asked to fill in the questions about the respective concept.  
+Don't worry there is no right or wrong. All that counts is your personal opinion.  
+Have fun!
+
 
 ## Concept 1
 
