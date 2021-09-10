@@ -8,6 +8,10 @@ pm2_5_WHO_threshold = 10
 pm10_EU_threshold = 40
 pm10_WHO_threshold = 20
 
+def start_sound():
+    # TODO add introduction to sonification concepts
+    pass
+
 def wind_chimes(joint_pm2_5, joint_pm10):
     print("wind joint pm2_5 ", joint_pm2_5)
     print("wind joint pm10 ", joint_pm10)
