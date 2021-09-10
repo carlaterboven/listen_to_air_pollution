@@ -131,7 +131,7 @@ To finally hear the sonified data, I use PD (*Pure Data*). I send the preprocess
 These messages trigger PD to play prerecorded samples at a certain speed. The setup is based on tutorials by Kreidler [[28]](#pd-examples) and Brown [[25]](#pd-examples). I hoped to create an intuitive understanding with samples that sound like air pollution. But since air pollution has no natural sound, I tried multiple approaches using different samples.  
 
 ### 6.) Work results
-This semester I aimed to realize sonification with samples. Based on different sound snippets, I developed five different concepts to sonify the quality of the air. The advantages and disadvantages of the concepts' pleasance and information content still need to be tested with a uniform study. In the following, all concepts will be briefly explained, and finally, it will be reported how a test series with users could look like, which would allow the comparison of the concepts.
+This semester I aimed to realize sonification with samples. Based on different sound snippets, I developed five different concepts to sonify the quality of the air. The advantages and disadvantages of the concepts' pleasantness and information content still need to be tested with a uniform study. In the following, all concepts will be briefly explained, and finally, it will be reported how a test series with users could look like, which would allow the comparison of the concepts.
 
 #### Where to find the code and demo/prototypical application
 Code: https://github.com/carlaterboven/listen_to_air_pollution  
@@ -195,7 +195,7 @@ Compared to the other concepts, I find this approach artistically less exciting 
 So far, I have developed five different sonification concepts. But more detailed feedback and comparison between the concepts would be desirable. This information can be obtained in a user study, where the product is tested in practice.  
 The study is only planned this semester.  Conducting the user study is part of the future work.
 
-The goal of the user study would be to compare the concepts and improve the user experience. Points of interest are the pleasence and the informativeness of the sound.  Furthermore, I would like to get feedback if an introduction to the sonification concept is needed in the beginning. General advice from the user regarding the project and the device could be collected at the end of the survey.
+The goal of the user study would be to compare the concepts and improve the user experience. Points of interest are the pleasantness and the informativeness of the sound.  Furthermore, I would like to get feedback if an introduction to the sonification concept is needed in the beginning. General advice from the user regarding the project and the device could be collected at the end of the survey.
 
 In general, I would like to ask each participant to walk with the sensor and headphones in the ears for about 5 minutes (or longer). After each walk, the user will be asked to fill in the questions about the respective concept in a study questionnaire.  
 
