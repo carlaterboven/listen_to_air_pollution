@@ -169,9 +169,9 @@ def bees(joint_pm2_5):
 
 def birds(joint_pm10):
     if joint_pm10 <= pm10_EU_threshold:
-            client.send_message("/birds", [0, 220505, 10000])
+            client.send_message("/birds", [0, 220501, 10000])
             time.sleep(5)
-            client.send_message("/birds", [0, 220505, 10000])
+            client.send_message("/birds", [0, 220501, 10000])
 
 
 def bird_alarm(joint_pm2_5, joint_pm10):
