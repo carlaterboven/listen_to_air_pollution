@@ -19,7 +19,7 @@ class Rotaryknob:
     BUTTON_PIN = 8
 
     def __init__(self):
-        self.__concept = Concept()
+        self.__concept = Concept(0)
         self.__counter = 0
         self.__rotary_position = 0
         self.__PIN_CLK_LAST = 0
@@ -31,15 +31,15 @@ class Rotaryknob:
     def get_concept(self):
         if (self.__rotary_position >= 2 and self.__rotary_position < 7):
             self.__concept = Concept.BEES
-        elif (rotary_position >= 7 and rotary_position < 12):
+        elif (self.__rotary_position >= 7 and self.__rotary_position < 12):
             self.__concept = Concept.WIND
-        elif (rotary_position >= 12 and rotary_position < 17):
+        elif (self.__rotary_position >= 12 and self.__rotary_position < 17):
             self.__concept = Concept.ASTHMA
         else:
             self.__concept = Concept.GEIGER
         return self.__concept
 
-    def turn_knob(self):
+    def turn_knob(self, null):
         self.__PIN_CLK_NEW = GPIO.input(Rotaryknob.PIN_CLK)
         if self.__PIN_CLK_NEW != self.__PIN_CLK_LAST:
             # check if knob is turned clockwise or counterclockwise
@@ -52,12 +52,12 @@ class Rotaryknob:
 
             # match counter to position and concept
             self.__rotary_position = self.__counter%Rotaryknob.rotarysteps
-            self.__concept = self.get_concept()
+            self.get_concept()
 
             print("New Concept: ", self.__concept)
             print("------------------------------")
 
-    def counter_reset(self):
+    def counter_reset(self, null):
         print("Reset Position!")
         print("------------------------------")
         self.__counter = 0
