@@ -45,16 +45,14 @@ if __name__ ==  '__main__':
             else:
                 # any other time: prepare data and start sonification processes
                 sensor.prepare_data()
-                sound_concept = sound_concept.SoundConcept(sensor.get_pm1(), sensor.get_pm2_5(), sensor.get_pm10(), sensor.get_joint_pm2_5(), sensor.get_joint_pm10(), sensor.get_pm10s())
+                sound_concept_object = sound_concept.SoundConcept(sensor.get_pm1(), sensor.get_pm2_5(), sensor.get_pm10(), sensor.get_joint_pm2_5(), sensor.get_joint_pm10(), sensor.get_pm10s())
 
                 # setup processes based on mode
                 new_mode = rotary.get_mode()
                 if new_mode is not mode:
                     mode = new_mode
                     processes = []
-                    print(mode)
-                    concept = sound_concept.get_concept(mode.name)
-                    print(concept)
+                    concept = sound_concept_object.get_concept(mode.name)
                     for part in concept:
                         processes.append(Process(target=concept[part].target, args=concept[part].args))
 

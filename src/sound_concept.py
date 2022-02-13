@@ -30,26 +30,26 @@ class SoundConcept():
         return pd.DataFrame({"p1": pd.Series(p1), "p2":pd.Series(p2), "p3":pd.Series(p3)})
 
     def concept1(self):
-        p1 = {"target": breath, "args":[pm1]}
-        p2 = {"target": geiger_counter, "args":[pm10s, joint_pm10]}
+        p1 = {"target": breath, "args":[self.__pm1]}
+        p2 = {"target": geiger_counter, "args":[self.__pm10s, self.__joint_pm10]}
         return pd.DataFrame({"p1": pd.Series(p1), "p2":pd.Series(p2)})
 
     def concept2(self):
-        p1 = {"target": breath, "args":[pm1]}
-        p2 = {"target": air_bubbles, "args":[pm2_5]}
-        p3 = {"target": asthma_inhaler, "args":[pm10s, joint_pm10]}
+        p1 = {"target": breath, "args":[self.__pm1]}
+        p2 = {"target": air_bubbles, "args":[self.__pm2_5]}
+        p3 = {"target": asthma_inhaler, "args":[self.__pm10s, self.__joint_pm10]}
         return pd.DataFrame({"p1": pd.Series(p1), "p2":pd.Series(p2), "p3":pd.Series(p3)})
 
     def concept3(self):
-        p1 = {"target": wind_chimes, "args":[joint_pm2_5, joint_pm10]}
-        p2 = {"target": wind_leaves, "args":[joint_pm2_5, joint_pm10]}
-        p3 = {"target": wind, "args":[joint_pm2_5, joint_pm10]}
+        p1 = {"target": wind_chimes, "args":[self.__joint_pm2_5, self.__joint_pm10]}
+        p2 = {"target": wind_leaves, "args":[self.__joint_pm2_5, self.__joint_pm10]}
+        p3 = {"target": wind, "args":[self.__joint_pm2_5, self.__joint_pm10]}
         return pd.DataFrame({"p1": pd.Series(p1), "p2":pd.Series(p2), "p3":pd.Series(p3)})
 
     def concept4(self):
-        p1 = {"target": bees, "args":[joint_pm2_5]}
-        p2 = {"target": birds, "args":[joint_pm10]}
-        p3 = {"target": bird_alarm, "args":[joint_pm2_5, joint_pm10]}
+        p1 = {"target": bees, "args":[self.__joint_pm2_5]}
+        p2 = {"target": birds, "args":[self.__joint_pm10]}
+        p3 = {"target": bird_alarm, "args":[self.__joint_pm2_5, self.__joint_pm10]}
         return pd.DataFrame({"p1": pd.Series(p1), "p2":pd.Series(p2), "p3":pd.Series(p3)})
 
     def get_concept(self, mode):
