@@ -13,9 +13,6 @@ def start_sound():
     pass
 
 def wind_chimes(joint_pm2_5, joint_pm10):
-    print("wind joint pm2_5 ", joint_pm2_5)
-    print("wind joint pm10 ", joint_pm10)
-
     if joint_pm2_5 <= pm2_5_EU_threshold and joint_pm10 <= pm10_EU_threshold:
         for i in range(9):
             client.send_message("/wind_chimes", [0, 45803, 1039])
@@ -44,8 +41,6 @@ def asthma_inhaler(pm10s, joint_pm10):
         if pm10 > 25:
             pm10 = 25
 
-        print("asthma inhaler -> ", pm10)
-
         # set time in seconds while geiger clicks
         sampling_time = 1
         # only click if higher than threshold
@@ -63,8 +58,6 @@ def asthma_inhaler(pm10s, joint_pm10):
 
 
 def air_bubbles(pm2_5):
-    print("air bubbles -> ", pm2_5)
-
     if pm2_5 < 7:
         for i in range(5):
             client.send_message("/air_bubble", [0, 8837, 600])
@@ -84,7 +77,6 @@ def air_bubbles(pm2_5):
 
 
 def breath(pm1):
-    print("pm1: ", pm1)
     # most relaxed breath is 10 sec
     # one slow breath is 7 sec
     # fastest breath here is 1 sec
@@ -113,9 +105,6 @@ def geiger_counter(pm10s, joint_pm10):
         if pm10 > 25:
             pm10 = 25
 
-        print("geiger counts -> ", pm10)
-        print("joint pm10 -> ", joint_pm10)
-
         # set time in seconds while geiger clicks
         sampling_time = 1
         # only click if higher than threshold
@@ -136,8 +125,6 @@ def music():
 
 
 def noise(joint_pm2_5, joint_pm10):
-    print("pm2.5 ", joint_pm2_5)
-    print("pm10 ", joint_pm10)
     # pollution > EU threshold -> always noise
     # pollution between WHO and EU thersholds -> sometimes noise depending on level of pollution
     # min pollution -> no noise

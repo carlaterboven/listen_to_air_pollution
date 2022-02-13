@@ -50,12 +50,9 @@ class Rotaryknob:
             else:
                 self.__counter -= 1
 
-            print("New Position: ", self.__counter)
-
             # match counter to position and mode
             self.__rotary_position = self.__counter%Rotaryknob.rotarysteps
             self.compute_mode()
-
             print("New Mode: ", self.__mode)
             print("------------------------------")
 
