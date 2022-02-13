@@ -43,8 +43,7 @@ if __name__ ==  '__main__':
                 # setup processes based on mode
                 mode = rotary.get_mode()
                 concept = sound_concept_object.get_concept(mode.name)
-                # Reset processes
-                processes = []
+                processes.clear()
                 for part in concept:
                     processes.append(Process(target=concept[part].target, args=concept[part].args))
                 for process in processes:
@@ -64,6 +63,7 @@ if __name__ ==  '__main__':
                 if not first_round:
                     alive = True
                     for process in processes:
+                        print("alive: ", alive)
                         alive = alive and process.is_alive()
                     if not alive:
                         break
