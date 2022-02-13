@@ -34,7 +34,6 @@ if __name__ ==  '__main__':
     GPIO.add_event_detect(rotary.BUTTON_PIN, GPIO.FALLING, callback=rotary.counter_reset, bouncetime=50)
 
     first_round = True
-    mode = 0
     processes = []
 
     try:
@@ -48,14 +47,12 @@ if __name__ ==  '__main__':
                 sound_concept_object = sound_concept.SoundConcept(sensor.get_pm1(), sensor.get_pm2_5(), sensor.get_pm10(), sensor.get_joint_pm2_5(), sensor.get_joint_pm10(), sensor.get_pm10s())
 
                 # setup processes based on mode
-                new_mode = rotary.get_mode()
-                if new_mode is not mode:
-                    mode = new_mode
-                    processes = []
-                    concept = sound_concept_object.get_concept(mode.name)
-                    for part in concept:
-                        processes.append(Process(target=concept[part].target, args=concept[part].args))
-
+                mode = rotary.get_mode()
+                concept = sound_concept_object.get_concept(mode.name)
+                # Reset processes
+                processes = []
+                for part in concept:
+                    processes.append(Process(target=concept[part].target, args=concept[part].args))
                 for process in processes:
                     process.start()
 
