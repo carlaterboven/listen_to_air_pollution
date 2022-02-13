@@ -6,9 +6,9 @@ import time
 from multiprocessing import Process
 import os
 from generate_sound import *
-from sound_concept import *
 import sensor as sensor
 import rotary_knob as knob
+import sound_concept as sound_concept
 
 if __name__ ==  '__main__':
     print("Read and sonify PM data. Change sonification mode with rotary knob. [Press Ctrl+C to exit!]")
@@ -28,7 +28,7 @@ if __name__ ==  '__main__':
     GPIO.add_event_detect(rotary.BUTTON_PIN, GPIO.FALLING, callback=rotary.counter_reset, bouncetime=50)
 
     first_round = True
-    mode = Mode.BEES
+    mode = 0
     processes = []
 
     try:
@@ -39,6 +39,7 @@ if __name__ ==  '__main__':
             else:
                 # any other time: prepare data and start sonification processes
                 sensor.prepare_data()
+                sound_concept = sound_concept.SoundConcept(sensor.get_pm1(), sensor.get_pm2_5(), sensor.get_pm10(), sensor.get_joint_pm2_5(), sensor.get_joint_pm10(), sensor.get_pm10s())
 
                 # setup processes based on mode
                 new_mode = rotary.get_mode()
@@ -46,7 +47,8 @@ if __name__ ==  '__main__':
                     mode = new_mode
                     processes = []
                     print(mode)
-                    concept = modeDict.get(mode, lambda: 'Invalid Mode')()
+                    concept = sound_concept.get_concept(mode.name)
+                    print(concept)
                     for part in concept:
                         processes.append(Process(target=concept[part].target, args=concept[part].args))
 

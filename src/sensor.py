@@ -51,8 +51,20 @@ class Sensor:
         self.__joint_pm10 += data.pm_ug_per_m3(10.0)
         self.__pm10s.append(data.pm_ug_per_m3(10.0) - data.pm_ug_per_m3(2.5))
 
+    def get_pm1(self):
+        return self.__pm1
+
+    def get_pm2_5(self):
+        return self.__pm2_5
+
+    def get_pm10(self):
+        return self.__pm10
+
     def get_joint_pm2_5(self):
         return self.__joint_pm2_5
 
     def get_joint_pm10(self):
         return self.__joint_pm10
+
+    def get_pm10s(self):
+        return self.__pm10s
