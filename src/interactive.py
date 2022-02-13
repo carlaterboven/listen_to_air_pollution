@@ -6,6 +6,7 @@ import time
 from multiprocessing import Process
 import os
 from generate_sound import *
+from sound_concept import *
 import sensor as sensor
 import rotary_knob as knob
 
@@ -27,6 +28,8 @@ if __name__ ==  '__main__':
     GPIO.add_event_detect(rotary.BUTTON_PIN, GPIO.FALLING, callback=rotary.counter_reset, bouncetime=50)
 
     first_round = True
+    mode = Mode.BEES
+    processes = []
 
     try:
         while True:
@@ -37,16 +40,18 @@ if __name__ ==  '__main__':
                 # any other time: prepare data and start sonification processes
                 sensor.prepare_data()
 
-                # setup processes based on concept
-                # TODO
-                # concept4
-                p1 = Process(target=bees, args=[sensor.get_joint_pm2_5()])
-                p2 = Process(target=birds, args=[sensor.get_joint_pm10()])
-                p3 = Process(target=bird_alarm, args=[sensor.get_joint_pm2_5(), sensor.get_joint_pm10()])
+                # setup processes based on mode
+                new_mode = rotary.get_mode()
+                if new_mode is not mode:
+                    mode = new_mode
+                    processes = []
+                    print(mode)
+                    concept = modeDict.get(mode, lambda: 'Invalid Mode')()
+                    for part in concept:
+                        processes.append(Process(target=concept[part].target, args=concept[part].args))
 
-                p1.start()
-                p2.start()
-                p3.start()
+                for process in processes:
+                    process.start()
 
             sensor.reset_data()
 
@@ -65,9 +70,8 @@ if __name__ ==  '__main__':
             if first_round:
                 first_round = False
             else:
-                p1.join()
-                p2.join()
-                p3.join()
+                for process in processes:
+                    process.join()
 
     except KeyboardInterrupt:
             GPIO.cleanup()

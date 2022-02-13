@@ -3,7 +3,7 @@ import RPi.GPIO as GPIO
 import time
 from enum import Enum
 
-class Concept(Enum):
+class Mode(Enum):
     TEST = 0
     GEIGER = 1
     ASTHMA = 2
@@ -19,7 +19,7 @@ class Rotaryknob:
     BUTTON_PIN = 8
 
     def __init__(self):
-        self.__concept = Concept(0)
+        self.__mode = Mode(0)
         self.__counter = 0
         self.__rotary_position = 0
         self.__PIN_CLK_LAST = 0
@@ -28,16 +28,18 @@ class Rotaryknob:
     def __del__(self):
         pass
 
-    def get_concept(self):
+    def compute_mode(self):
         if (self.__rotary_position >= 2 and self.__rotary_position < 7):
-            self.__concept = Concept.BEES
+            self.__mode = Mode.BEES
         elif (self.__rotary_position >= 7 and self.__rotary_position < 12):
-            self.__concept = Concept.WIND
+            self.__mode = Mode.WIND
         elif (self.__rotary_position >= 12 and self.__rotary_position < 17):
-            self.__concept = Concept.ASTHMA
+            self.__mode = Mode.ASTHMA
         else:
-            self.__concept = Concept.GEIGER
-        return self.__concept
+            self.__mode = Mode.GEIGER
+
+    def get_mode(self):
+        return self.__mode
 
     def turn_knob(self, null):
         self.__PIN_CLK_NEW = GPIO.input(Rotaryknob.PIN_CLK)
@@ -50,11 +52,11 @@ class Rotaryknob:
 
             print("New Position: ", self.__counter)
 
-            # match counter to position and concept
+            # match counter to position and mode
             self.__rotary_position = self.__counter%Rotaryknob.rotarysteps
-            self.get_concept()
+            self.compute_mode()
 
-            print("New Concept: ", self.__concept)
+            print("New Mode: ", self.__mode)
             print("------------------------------")
 
     def counter_reset(self, null):
