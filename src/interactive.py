@@ -10,6 +10,12 @@ import sensor as sensor
 import rotary_knob as knob
 import sound_concept as sound_concept
 
+def all_processes_alive(processes):
+    alive = True
+    for process in processes:
+        alive = alive and process.is_alive()
+    return alive
+
 if __name__ ==  '__main__':
     print("Read and sonify PM data. Change sonification mode with rotary knob. [Press Ctrl+C to exit!]")
     GPIO.setmode(GPIO.BCM)
@@ -66,7 +72,7 @@ if __name__ ==  '__main__':
                     break
 
                 if not first_round:
-                    if not p1.is_alive() or not p2.is_alive() or not p3.is_alive():
+                    if not all_processes_alive(processes):
                         break
 
             if first_round:
