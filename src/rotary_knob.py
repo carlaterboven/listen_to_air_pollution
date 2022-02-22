@@ -19,7 +19,7 @@ class Rotaryknob:
     BUTTON_PIN = 8
 
     def __init__(self):
-        self.__mode = Mode(0)
+        self.__mode = Mode(1)
         self.__counter = 0
         self.__rotary_position = 0
         self.__PIN_CLK_LAST = 0

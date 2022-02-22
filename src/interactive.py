@@ -49,7 +49,6 @@ if __name__ ==  '__main__':
                     processes.append(Process(target=concept[part].target, args=concept[part].args))
                 for process in processes:
                     process.start()
-                    print("first check: ", process.is_alive())
 
             sensor.reset_data()
 
