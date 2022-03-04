@@ -24,8 +24,8 @@ if __name__ ==  '__main__':
     rotary.set_clk_last(GPIO.input(rotary.PIN_CLK))
 
     # To directly integrate a debounce, the functions for output are initialized by the CallBack-Option of the GPIO Python module
-    # GPIO.add_event_detect(rotary.PIN_CLK, GPIO.BOTH, callback=rotary.turn_knob, bouncetime=50)
-    # GPIO.add_event_detect(rotary.BUTTON_PIN, GPIO.FALLING, callback=rotary.counter_reset, bouncetime=50)
+    GPIO.add_event_detect(rotary.PIN_CLK, GPIO.BOTH, callback=rotary.turn_knob, bouncetime=50)
+    GPIO.add_event_detect(rotary.BUTTON_PIN, GPIO.FALLING, callback=rotary.counter_reset, bouncetime=50)
 
     first_round = True
     processes = []
@@ -56,17 +56,9 @@ if __name__ ==  '__main__':
             while True:
                 sensor.read_data()
 
-                if time.time() - start_timer > 10:
+                if time.time() - start_timer > 9.4:
                 # if time.time() - start_timer > 10 and p1.is_alive():
                     break
-
-#                 if not first_round:
-#                     alive = True
-#                     for process in processes:
-#                         print("alive: ", alive)
-#                         alive = alive and process.is_alive()
-#                     if not alive:
-#                         break
 
             if first_round:
                 first_round = False

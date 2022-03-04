@@ -6,10 +6,11 @@ from multiprocessing import Process
 import os
 from generate_sound import *
 import sensor as sensor
+import rotary_knob as mode_class
 import sound_concept as sound_concept
 
 if __name__ ==  '__main__':
-    print("Read and sonify PM data. Change sonification mode with rotary knob. [Press Ctrl+C to exit!]")
+    print("Read and sonify PM data. Fixed sonification mode (without rotary knob). [Press Ctrl+C to exit!]")
     sensor = sensor.Sensor()
 
     first_round = True
@@ -27,7 +28,7 @@ if __name__ ==  '__main__':
 
                 # setup processes based on mode
                 # TEST = 0; GEIGER = 1; ASTHMA = 2; WIND = 3; BEES = 4
-                mode = 2
+                mode = mode_class.Mode(2)
                 concept = sound_concept_object.get_concept(mode.name)
                 processes.clear()
 
@@ -45,14 +46,6 @@ if __name__ ==  '__main__':
                 if time.time() - start_timer > 10:
                 # if time.time() - start_timer > 10 and p1.is_alive():
                     break
-
-#                 if not first_round:
-#                     alive = True
-#                     for process in processes:
-#                         print("alive: ", alive)
-#                         alive = alive and process.is_alive()
-#                     if not alive:
-#                         break
 
             if first_round:
                 first_round = False
