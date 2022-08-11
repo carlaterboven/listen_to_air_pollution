@@ -1,4 +1,4 @@
-#N canvas -9 -9 1920 976 12;
+#N canvas 10 80 600 300 10;
 #X obj 261 304 print;
 #X obj 36 68 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
@@ -101,8 +101,8 @@
 #X obj 2119 500 birds;
 #X obj 2117 759 dac~;
 #N canvas 0 50 450 250 (subpatch) 0;
-#X array music 9.17626e+006 float 2;
-#X coords 0 1 9.17626e+006 -1 200 140 1 0 0;
+#X array music 9.17626e+06 float 2;
+#X coords 0 1 9.17626e+06 -1 200 140 1 0 0;
 #X restore 2478 74 graph;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array noise 441001 float 2;
@@ -113,8 +113,8 @@
 #X coords 0 1 441004 -1 200 140 1 0 0;
 #X restore 2917 74 graph;
 #N canvas 0 50 450 250 (subpatch) 0;
-#X array birds 220501 float 2;
-#X coords 0 1 220501 -1 200 140 1 0 0;
+#X array birds 220505 float 2;
+#X coords 0 1 220505 -1 200 140 1 0 0;
 #X restore 3134 74 graph;
 #N canvas 0 50 450 250 (subpatch) 0;
 #X array bird_alarm 84364 float 2;
@@ -134,13 +134,13 @@
 #X msg 2385 275 0 \, 441004 10000;
 #X msg 2377 640 0 \, 84364 1760;
 #X obj 2117 716 *~ 0.8;
-#X msg 1704 857 0 \, 9.17626e+006 208079;
+#X msg 1704 857 0 \, 9.17626e+06 208079;
 #X text 1700 830 length of music sound file: ca 3:28.079 min;
 #X text 1700 1029 length of noise sound file: ca 10 sec;
 #X msg 1704 1056 0 \, 441001 10000;
 #X obj 1444 1132 *~ 0.1;
 #X msg 2380 457 0 \, 220501 5000;
-#X obj 2120 533 *~ 0.5;
+#X obj 2120 533 *~ 0.2;
 #X connect 1 0 2 0;
 #X connect 7 0 9 0;
 #X connect 8 0 5 0;
@@ -153,7 +153,6 @@
 #X connect 17 0 18 0;
 #X connect 18 0 19 0;
 #X connect 19 0 20 0;
-#X connect 20 0 0 0;
 #X connect 20 0 22 0;
 #X connect 20 0 21 0;
 #X connect 20 0 28 0;

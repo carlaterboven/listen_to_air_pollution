@@ -1,5 +1,4 @@
 # coding=utf-8
-import RPi.GPIO as GPIO
 from enum import Enum
 import pandas as pd
 import time
@@ -7,25 +6,12 @@ from multiprocessing import Process
 import os
 from generate_sound import *
 import sensor as sensor
-import rotary_knob as knob
+import rotary_knob as mode_class
 import sound_concept as sound_concept
 
 if __name__ ==  '__main__':
-    print("Read and sonify PM data. Change sonification mode with rotary knob. [Press Ctrl+C to exit!]")
-    GPIO.setmode(GPIO.BCM)
-
-    rotary = knob.Rotaryknob()
+    print("Read and sonify PM data. Fixed sonification mode (without rotary knob). [Press Ctrl+C to exit!]")
     sensor = sensor.Sensor()
-
-    GPIO.setup(rotary.PIN_CLK, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-    GPIO.setup(rotary.PIN_DT, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-    GPIO.setup(rotary.BUTTON_PIN, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-
-    rotary.set_clk_last(GPIO.input(rotary.PIN_CLK))
-
-    # To directly integrate a debounce, the functions for output are initialized by the CallBack-Option of the GPIO Python module
-    GPIO.add_event_detect(rotary.PIN_CLK, GPIO.BOTH, callback=rotary.turn_knob, bouncetime=50)
-    GPIO.add_event_detect(rotary.BUTTON_PIN, GPIO.FALLING, callback=rotary.counter_reset, bouncetime=50)
 
     first_round = True
     processes = []
@@ -41,7 +27,8 @@ if __name__ ==  '__main__':
                 sound_concept_object = sound_concept.SoundConcept(sensor.get_pm1(), sensor.get_pm2_5(), sensor.get_pm10(), sensor.get_joint_pm2_5(), sensor.get_joint_pm10(), sensor.get_pm10s())
 
                 # setup processes based on mode
-                mode = rotary.get_mode()
+                # TEST = 0; GEIGER = 1; ASTHMA = 2; WIND = 3; BEES = 4
+                mode = mode_class.Mode(2)
                 concept = sound_concept_object.get_concept(mode.name)
                 processes.clear()
 
@@ -56,7 +43,7 @@ if __name__ ==  '__main__':
             while True:
                 sensor.read_data()
 
-                if time.time() - start_timer > 9.4:
+                if time.time() - start_timer > 10:
                 # if time.time() - start_timer > 10 and p1.is_alive():
                     break
 

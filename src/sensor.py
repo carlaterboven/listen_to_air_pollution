@@ -34,7 +34,7 @@ class Sensor:
         self.__pm10 = 0
         self.__joint_pm2_5 = 0
         self.__joint_pm10 = 0
-        self.__pm10s = []
+        self.__pm10s.clear()
         self.__sampling_steps = 0
 
     def read_data(self):
