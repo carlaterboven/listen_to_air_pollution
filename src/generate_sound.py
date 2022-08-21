@@ -47,7 +47,6 @@ def asthma_inhaler(pm10s, joint_pm10):
 
             # set time in seconds while geiger clicks
             sampling_time = 10/len(pm10s)
-
             # click once for every 5µg disjoint PM10 pollution
             num_clicks = pm10//5
             if num_clicks == 0:
@@ -112,7 +111,6 @@ def geiger_counter(pm10s, joint_pm10):
 
             # set time in seconds while geiger clicks
             sampling_time = 10/len(pm10s)
-            
             # click once for every 2µg disjoint PM10 pollution
             num_clicks = pm10//2
             if num_clicks == 0:
